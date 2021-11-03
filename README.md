@@ -32,6 +32,29 @@ Zoals je ziet wordt deze dus afgesloten door voor het &gt; teken een / te zetten
 
 Soms gebruik je in een HTML element ook nog attributen. Zoals hierboven in het voorbeeld van het plaatje waar **width** wordt gebruikt. Hiermee kan je het HTML element nog extra eigenschappen meegeven die de weergave beinvloeden. In dit geval zeggen we hiermee dat het plaatje maximaal 200 breed mag worden weergegeven. Is het plaatje groter, dan zal de browser het voor ons verkleinen.
 
+Veel voorkomende HTML elementen zijn:
+
+* header de kop van het document
+* footer de staart van het document
+* main de inhoud van het document
+* section een sectie van het document
+* div voor het groeperen van elementen op een pagina
+* p voor paragraaf
+* b voor dik gedrukt (bold)
+* i voor schuin gedrukt (italic)
+* h1 wordt gebruikt voor de pagina titel
+* h2 voor een kop
+* h3 voor een tussenkop
+* img voor een plaatje
+* video voor een video
+* nav voor navigatie elementen zoals een menu 
+* aside voor een sectie die aan de zijkant moet komen van het document. Vaak gebruikt voor navigatie e.d.
+* table voor een tabel
+* tr voor een rij in een tabel
+* td voor een kolom in een tabel
+
+Bovenstaande elementen komen dus altijd tussen een **&lt;** en een **&gt;** te staan en worden **tags** genoemd.
+Voor meer informatie, kijk eens op [dit webboek](https://www.ria-maria.nl/boeken/HTML5andCSS3/HTML5hoofdstuk2.html).
 ### CSS
 Bij het maken van een HTML pagina gaat het niet alleen om het plaatsen van tekst, paragrafen en plaatjes. Het gaat ook om zaken als tekst kleur, marges, lijntjes, achtergrondkleuren en plaatsen van de elementen op de pagina.
 Hiervoor gebruiken we CSS, Cascading Style Sheets.
@@ -62,6 +85,8 @@ De CSS om dit element in de kleur oranje te verander zou zijn:
 
 Wil je meer weten over CSS, dan kan je bijvoorbeeld [deze pagina](https://wikikids.nl/Cascading_Style_Sheets) eens lezen.
 # Opdrachten
+Het doel van de opdrachten is om langzaam zelf een webpagina in elkaar te zetten. En onderweg een aantal verschillende elementen te leren kennen van zowel HTML als van CSS. Het eindresultaat moet er ongeveer zo uit gaan zien:
+![Eindresultaat](minecraft-pagina-resultaat.png)
 ## Opdracht 1
 Maak een directory waarin je gaat werken en zet daarin het bestand 'index.html'.
 
