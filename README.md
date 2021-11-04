@@ -3,9 +3,41 @@
 ## Basis kennis
 
 ### HTML
-HTML pagina's zijn eigenlijk gewoon tekstbestanden met een bepaalde structuur. Om een browser die de HTML pagina weergeeft te vertellen hoe hij het moet tonen, gebruik je HTML elementen (ook wel tags genoemd). Deze HTML elementen zet je meestal om het stukje tekst heen dat je wil beinvloeden. Dus de meeste HTMML elementen bestaan uit een begin element en een eind element. 
+Velen denken dat het een programmeertaal is, maar dit is niet het geval. HTML programmeren is dus niet correct verwoord, maar dit wordt wel vaak gezegd. Met alleen HTML zal je website er wel kaal uitzien, maar het is een begin. HTML staat voor “Hyper Text Markup Language”. HTML is een opmaaktaal. HTML beschrijft de opmaak/structuur van een webpagina. Om een browser die de HTML pagina weergeeft te vertellen hoe hij het moet tonen, gebruik je HTML elementen (ook wel tags genoemd). Deze HTML elementen zet je meestal om het stukje tekst heen dat je wil beinvloeden. Dus de meeste HTML elementen bestaan uit een begin element en een eind element. 
 
-Bijvoorbeeld om tekst dik te drukken gebruik je het begin element &lt;b&gt;**vervolgens je tekst en dan het afsluitende element**&lt;/b&gt;. Het resultaat is dat de tekst dik wordt gedrukt!
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Titel van de pagina</title>
+</head>
+<body>
+    <h1>Hoofdstuk 1</h1>
+    <p>Paragraaf 1.</p>
+    <p>Paragraaf 2.</p>
+  
+    <h1>Hoofdstuk 2</h1>
+    <p>Paragraaf 1.</p>
+    <p>Paragraaf 2.</p>
+</body>
+</html>
+```
+
+```<!DOCTYPE html>``` = Betekent dat het een HTML5 document is.
+
+```<html>``` = Is het kernelement van het document.
+
+```<head>``` Bevat meta informatie over het document, zoals een beschrijving, de auteur, de titel enz.
+
+```<title>``` = Bevat de titel van het document. Deze titel komt in het tabblad van de browser te staan, wanneer de website daar openstaat.
+
+```<body>``` = Hierin staat de zichtbare content op de website.
+
+```<h1>``` = Bevat een grote titel, meestal de eerste kop van een pagina.
+
+```<p>``` = Bevat een paragraaf.
+
+Bijvoorbeeld om tekst dik te drukken gebruik je het begin element &lt;b&gt;**vervolgens je tekst en dan het afsluitende element**&lt;/b&gt;. Het resultaat is dat de tekst tussen deze elementen dik wordt gedrukt!
 
 Belangrijk bij HTML is dat de volgorde van afsluiten van de elementen in de omgekeerde volgorde gebeurd als het openen. 
 Even een voorbeeld hiervan:
@@ -54,7 +86,7 @@ Veel voorkomende HTML elementen zijn:
 * td voor een kolom in een tabel
 
 Bovenstaande elementen komen dus altijd tussen een **&lt;** en een **&gt;** te staan en worden **tags** genoemd.
-Voor meer informatie, kijk eens op [dit webboek](https://www.ria-maria.nl/boeken/HTML5andCSS3/HTML5hoofdstuk2.html).
+Voor meer informatie, kijk eens op [dit webboek](https://www.ria-maria.nl/boeken/HTML5andCSS3/HTML5hoofdstuk2.html) of naar [de volledige lijst van HTML elementen](https://developer.mozilla.org/en-US/docs/Web/HTML/Element).
 ### CSS
 Bij het maken van een HTML pagina gaat het niet alleen om het plaatsen van tekst, paragrafen en plaatjes. Het gaat ook om zaken als tekst kleur, marges, lijntjes, achtergrondkleuren en plaatsen van de elementen op de pagina.
 Hiervoor gebruiken we CSS, Cascading Style Sheets.
@@ -88,9 +120,9 @@ Wil je meer weten over CSS, dan kan je bijvoorbeeld [deze pagina](https://wikiki
 Het doel van de opdrachten is om langzaam zelf een webpagina in elkaar te zetten. En onderweg een aantal verschillende elementen te leren kennen van zowel HTML als van CSS. Het eindresultaat moet er ongeveer zo uit gaan zien:
 ![Eindresultaat](minecraft-pagina-resultaat.png)
 ## Opdracht 1
-Maak een directory waarin je gaat werken en zet daarin het bestand 'index.html'.
+Download de repository als ZIP file. Maak een directory waarin je gaat werken en kopieer de ZIP file die je hebt gedownload daarnaartoe en pak hem daar uit.
 
-Open dit bestand index.html met Visual Studio Code.
+Open het bestand index.html met [Visual Studio Code](https://code.visualstudio.com/download).
 Zet hierin de basis HTML structuur zoals elke HTML pagina moet bevatten:
 
 ```html
