@@ -375,3 +375,10 @@ Voor nu beginnen we met de video die in de *movies* directory staat. We gaan dez
 
 </div>
 ```
+
+## Opdracht 9
+Nu heb je de pagina structuur klaar. Nu is de opdracht om zelf plaatjes te zoeken en die te downloaden in de images directory zodat je ze kan gebruiken in de HTML. Maar zelf een paar verhalen en probeer verschillende HTML elementen uit. Ook kan je met de stijling spelen door bijvoorbeeld de breedte anders te maken van elementen, achtergronden te wijzigen of de tekst kleur te veranderen.
+
+Als je je helemaal thuis voelt, kan je zelfs kijken of je een eigen stijling klasse kan introduceren door in stijling.css een .mijnstijling {} aan te maken (let op een stijling klasse mag geen spaties bevatten!) en die op een element toe te passen door een ```class="mijstijling"``` toe te passen op dat element.
+
+Ik hoop dat jullie veel plezier hebben gehad en veel geleerd hebben!
