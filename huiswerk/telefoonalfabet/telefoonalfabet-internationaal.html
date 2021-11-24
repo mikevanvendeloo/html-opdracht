@@ -1,0 +1,448 @@
+<html>
+<head><title>Quiz Internationaal telefoon alfabet</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
+
+body{
+	font-size: 20px;
+	font-family: 'Work Sans', sans-serif;
+	color: #333;
+  font-weight: 300;
+  text-align: center;
+  background-color: #f8f6f0;
+}
+h1{
+  font-weight: 300;
+  margin: 0px;
+  padding: 10px;
+  font-size: 20px;
+  background-color: #444;
+  color: #fff;
+}
+.question{
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+.answers {
+  margin-bottom: 20px;
+  text-align: left;
+  display: inline-block;
+}
+.answers label{
+  display: block;
+  margin-bottom: 10px;
+}
+button{
+  font-family: 'Work Sans', sans-serif;
+	font-size: 22px;
+	background-color: #279;
+	color: #fff;
+	border: 0px;
+	border-radius: 3px;
+	padding: 20px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+button:hover{
+	background-color: #38a;
+}
+
+.slide{
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.active-slide{
+  opacity: 1;
+  z-index: 2;
+}
+.quiz-container{
+  position: relative;
+  height: 200px;
+  margin-top: 40px;
+}
+
+    </style>
+</head>
+<body>
+    
+    <h1>Quiz Internationaal telefoon alfabet</h1>
+<div class="quiz-container">
+  <div id="quiz"></div>
+</div>
+<button id="previous">Vorige vraag</button>
+<button id="next">Volgende vraag</button>
+<button id="submit">Nakijken</button>
+<div id="results"></div>
+
+    <script>
+function randomArrayShuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex;
+  while (0 !== currentIndex) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  return array;
+}
+        (function(){
+  // Functions
+  function buildQuiz(){
+    // variable to store the HTML output
+    const output = [];
+
+    let questions = randomArrayShuffle(myQuestions)
+
+    // for each question...
+    questions.forEach(
+      (currentQuestion, questionNumber) => {
+
+        // variable to store the list of possible answers
+        const answers = [];
+
+        // and for each available answer...
+        for(letter in currentQuestion.answers){
+
+          // ...add an HTML radio button
+          answers.push(
+            `<label>
+              <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${currentQuestion.answers[letter]}
+            </label>`
+          );
+        }
+
+        const shuffledArray = randomArrayShuffle(answers);
+        // add this question and its answers to the output
+        output.push(
+          `<div class="slide">
+            <div class="question"> ${currentQuestion.question} </div>
+            <div class="answers"> ${shuffledArray.join("")} </div>
+          </div>`
+        );
+      }
+    );
+
+    // finally combine our output list into one string of HTML and put it on the page
+    quizContainer.innerHTML = output.join('');
+  }
+
+  function showResults(){
+
+    // gather answer containers from our quiz
+    const answerContainers = quizContainer.querySelectorAll('.answers');
+
+    // keep track of user's answers
+    let numCorrect = 0;
+
+    // for each question...
+    myQuestions.forEach( (currentQuestion, questionNumber) => {
+
+      // find selected answer
+      const answerContainer = answerContainers[questionNumber];
+      const selector = `input[name=question${questionNumber}]:checked`;
+      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+      // if answer is correct
+      if(userAnswer === currentQuestion.correctAnswer){
+        // add to the number of correct answers
+        numCorrect++;
+
+        // color the answers green
+        answerContainers[questionNumber].style.color = 'lightgreen';
+      }
+      // if answer is wrong or blank
+      else{
+        // color the answers red
+        answerContainers[questionNumber].style.color = 'red';
+      }
+    });
+
+    // show number of correct answers out of total
+    resultsContainer.innerHTML = `${numCorrect} van ${myQuestions.length}`;
+  }
+
+  function showSlide(n) {
+    slides[currentSlide].classList.remove('active-slide');
+    slides[n].classList.add('active-slide');
+    currentSlide = n;
+    if(currentSlide === 0){
+      previousButton.style.display = 'none';
+    }
+    else{
+      previousButton.style.display = 'inline-block';
+    }
+    if(currentSlide === slides.length-1){
+      nextButton.style.display = 'none';
+      submitButton.style.display = 'inline-block';
+    }
+    else{
+      nextButton.style.display = 'inline-block';
+      submitButton.style.display = 'none';
+    }
+  }
+
+  function showNextSlide() {
+    showSlide(currentSlide + 1);
+  }
+
+  function showPreviousSlide() {
+    showSlide(currentSlide - 1);
+
+  }
+
+  // Variables
+  var progressBar = document.getElementById("progress-bar");
+  var progressPercent = 0;
+  const quizContainer = document.getElementById('quiz');
+  const resultsContainer = document.getElementById('results');
+  const submitButton = document.getElementById('submit');
+  const myQuestions = [
+            {
+                question: "A",
+                answers: {
+                    a: 'Aaken',
+                    b: 'Amsterdam',
+                    c: 'Alpha'
+                },
+                correctAnswer: 'b'
+            },
+            {
+                question: "B",
+                answers: {
+                    a: 'Brussel',
+                    b: 'Bravo',
+                    c: 'Baltimore'
+                },
+                correctAnswer: 'c'
+            }, {
+                question: "C",
+                answers: {
+                    a: 'Casablanca',
+                    b: 'Charlie',
+                    c: 'Citroen'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "D",
+                answers: {
+                    a: 'Dirk',
+                    b: 'Denmark',
+                    c: 'Delta'
+                },
+                correctAnswer: 'b'
+            }, {
+                question: "E",
+                answers: {
+                    a: 'Edison',
+                    b: 'Eduard',
+                    c: 'Echo'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "F",
+                answers: {
+                    a: 'Foxtrot',
+                    b: 'France',
+                    c: 'Florida'
+                },
+                correctAnswer: 'c'
+            }, {
+                question: "G",
+                answers: {
+                    a: 'Germany',
+                    b: 'Golf',
+                    c: 'Gallipoli'
+                },
+                correctAnswer: 'c'
+            }, {
+                question: "H",
+                answers: {
+                    a: 'Havana',
+                    b: 'Hotel',
+                    c: 'Harlem'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "I",
+                answers: {
+                    a: 'Ireland',
+                    b: 'Italia',
+                    c: 'India'
+                },
+                correctAnswer: 'b'
+            }, {
+                question: "J",
+                answers: {
+                    a: 'Juliett',
+                    b: 'Jemen',
+                    c: 'Jerusalem'
+                },
+                correctAnswer: 'c'
+            }, {
+                question: "K",
+                answers: {
+                    a: 'Kilo',
+                    b: 'Kilogramme',
+                    c: 'Kuala Lumpur'
+                },
+                correctAnswer: 'b'
+            }, {
+                question: "L",
+                answers: {
+                    a: 'London',
+                    b: 'Liverpool',
+                    c: 'Lima'
+                },
+                correctAnswer: 'b'
+            }, {
+                question: "M",
+                answers: {
+                    a: 'Mike',
+                    b: 'Madagascar',
+                    c: 'Melbourne'
+                },
+                correctAnswer: 'b'
+            }, {
+                question: "N",
+                answers: {
+                    a: 'New York',
+                    b: 'New Orleans',
+                    c: 'November'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "O",
+                answers: {
+                    a: 'Oslo',
+                    b: 'Oklahoma',
+                    c: 'Oscar'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "P",
+                answers: {
+                    a: 'Paris',
+                    b: 'Papa',
+                    c: 'Portland'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "Q",
+                answers: {
+                    a: 'Quebec',
+                    b: 'Queens',
+                    c: 'Quetta'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "R",
+                answers: {
+                    a: 'Richmond',
+                    b: 'Rotterdam',
+                    c: 'Roma'
+                },
+                correctAnswer: 'c'
+            }, {
+                question: "S",
+                answers: {
+                    a: 'Singapore',
+                    b: 'Sierra',
+                    c: 'Santiago'
+                },
+                correctAnswer: 'c'
+            }, {
+                question: "T",
+                answers: {
+                    a: 'Tango',
+                    b: 'Tripoli',
+                    c: 'Taipei'
+                },
+                correctAnswer: 'b'
+            }, {
+                question: "U",
+                answers: {
+                    a: 'Uppsala',
+                    b: 'Uniform',
+                    c: 'Utrecht'
+                },
+                correctAnswer: 'a'
+            }, {
+                question: "V",
+                answers: {
+                    a: 'Victor',
+                    b: 'Valencia',
+                    c: 'Vienna'
+                },
+                correctAnswer: 'b'
+            },{
+                question: "W",
+                answers: {
+                    a: 'Wollongong',
+                    b: 'Washington',
+                    c: 'Warsaw'
+                },
+                correctAnswer: 'b'
+            },{
+                question: "X",
+                answers: {
+                    a: 'Xantippe',
+                    b: 'Xianyang',
+                    c: 'Xintai'
+                },
+                correctAnswer: 'a'
+            },{
+                question: "IJ",
+                answers: {
+                    a: 'Italia Juliett',
+                    b: 'India Jerusalem',
+                    c: 'Italia Jerusalem'
+                },
+                correctAnswer: 'c'
+            },{
+                question: "Y",
+                answers: {
+                    a: 'Yankee',
+                    b: 'Yokosuka',
+                    c: 'Yokohama'
+                },
+                correctAnswer: 'c'
+            },{
+                question: "Z",
+                answers: {
+                    a: 'Zurich',
+                    b: 'Zaandam',
+                    c: 'Zulu'
+                },
+                correctAnswer: 'a'
+            },
+        ];
+
+  // Kick things off
+  buildQuiz();
+
+  // Pagination
+  const previousButton = document.getElementById("previous");
+  const nextButton = document.getElementById("next");
+  const slides = document.querySelectorAll(".slide");
+  let currentSlide = 0;
+
+  // Show the first slide
+  showSlide(currentSlide);
+
+  // Event listeners
+  submitButton.addEventListener('click', showResults);
+  previousButton.addEventListener("click", showPreviousSlide);
+  nextButton.addEventListener("click", showNextSlide);
+})();
+
+    </script>
+</body>
+
+</html>
